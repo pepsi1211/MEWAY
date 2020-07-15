@@ -37,6 +37,7 @@ export default {
 };
 </script>
 <style lang="scss">
+// @import '../../../public/css/StyleSheet.scss';
 .main {
   display: block;
   min-width: 1024px;
@@ -44,9 +45,9 @@ export default {
   overflow: hidden;
   margin: 0 auto;
   position: relative;
-  background: url(../../../public/img/cloud.jpg) no-repeat #00c3ff;
+  background: url(../../../public/img/cloud.jpg) no-repeat;
   background-size: auto 1000px;
-  color: #AFAFB1;
+  color: var(--fontColor);
   height: 100vh;
   .cloudfloating {
     background: url(../../../public/img/cloud.jpg);
@@ -69,7 +70,7 @@ export default {
       display: inline-block;
       font-size: 15px;
       padding: 10px 20px;
-      border-bottom: 2px solid #AFAFB1;
+      border-bottom: 2px solid var(--fontColor);
       margin-bottom: 30px;
     }
     .section{
@@ -102,20 +103,25 @@ export default {
         }
       }
       div:nth-child(2){
-        color: #AFAFB1;
+        color: var(--fontColor);
       }
     }
     .btn{
-      width: 100%;
-      color: #AFAFB1;
+      width: 80%;
+      color: var(--fontColor);
       user-select: none;
       font-size: 13px;
-      background: #EEDDD5;
+      background: var(--theme);
       text-align: center;
       padding: 10px 0;
       border-radius: 5px;
-      margin-top: 30px;
+      margin: 30px auto 0 auto;
       opacity: 1;
+      transition: all 1s;
+      cursor: pointer;
+      &:hover{
+        transform: scale(1.1);
+      }
     }
   }
 }
