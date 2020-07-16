@@ -14,8 +14,8 @@
             default-active="2"
             class="el-menu-vertical-demo"
             background-color="#eeddd5"
-            text-color="#fff"
-            active-text-color="#AFAFB1"
+            text-color="#AFAFB1"
+            active-text-color="#333"
           >
             <el-menu-item index="1">
               <i class="el-icon-s-home"></i>
@@ -57,7 +57,9 @@
             </el-menu-item>
           </el-menu>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
