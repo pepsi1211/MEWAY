@@ -104,6 +104,10 @@ export default {
       }
       div:nth-child(2){
         color: var(--fontColor);
+        transition: all .3s;
+        &:hover{
+          color: var(--theme);
+        }
       }
     }
     .btn{
@@ -121,6 +125,7 @@ export default {
       cursor: pointer;
       &:hover{
         transform: scale(1.1);
+        color: #333;
       }
     }
   }
