@@ -72,7 +72,14 @@
           </div>
         </div>
         <!-- 计划任务 -->
-        <div class="plan"></div>
+        <div class="plan">
+          <el-tabs v-model="activeName" @tab-click="handleClick">
+            <el-tab-pane label="用户管理" name="first">今日待跟进</el-tab-pane>
+            <el-tab-pane label="配置管理" name="second">过去未完成</el-tab-pane>
+            <el-tab-pane label="角色管理" name="third">过去已完成</el-tab-pane>
+            <el-tab-pane label="定时任务补偿" name="fourth">以后待跟进</el-tab-pane>
+          </el-tabs>
+        </div>
       </div>
       <div class="right">
         <!-- 待办事项 -->
@@ -82,7 +89,7 @@
             <i class="el-icon-setting"></i>
           </div>
           <div class="todoList">
-            <div class="todoItem">
+            <div class="todoItem" v-for="item in 4" :key="item">
               <span class="icon">续费</span>
               <span>有21位学员需通知续费</span>
             </div>
@@ -95,10 +102,16 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      activeName: "first"
+    };
   },
   name: "",
-  methods: {},
+  methods: {
+    handleClick(tab,event){
+      console.log(tab,event)
+    }
+  },
   watch: {},
   computed: {}
 };
@@ -175,26 +188,28 @@ export default {
     align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
-    .left{
+    // 快捷入口
+    .entry {
       width: 50vw;
       background: #fff;
       border-radius: 5px;
       display: flex;
       flex-direction: column;
       padding: 10px 30px;
-      .entry-box{
+      margin-bottom: 20px;
+      .entry-box {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: flex-start;
         margin-top: 20px;
-        .item{
+        .item {
           width: 230px;
           padding: 20px 0;
           display: flex;
           align-items: center;
-          .icon{
+          .icon {
             display: inline-block;
             width: 42px;
             height: 42px;
@@ -203,72 +218,114 @@ export default {
             background-position-x: 0;
             margin-right: 20px;
             // 选班调班
-            &.xbtb{
+            &.xbtb {
               background-position-y: -42px;
             }
             // 课表
-            &.kb{
+            &.kb {
               background-position-y: -126px;
             }
             // 点名记录
-            &.dmjl{
+            &.dmjl {
               background-position-y: -214px;
             }
             // 缺课记录
-            &.qkjl{
+            &.qkjl {
               background-position-y: -299px;
             }
             // 小麦秀
-            &.xmx{
+            &.xmx {
               background-position-y: -805px;
             }
             // 在读学员
-            &.zdxy{
+            &.zdxy {
               background-position-y: -887px;
             }
             // 潜在学员
-            &.qzxy{
+            &.qzxy {
               background-position-y: -973px;
             }
             // 续费预警
-            &.xfyj{
+            &.xfyj {
               background-position-y: -1058px;
             }
             // 收据清单
-            &.sjqd{
+            &.sjqd {
               background-position-y: -467px;
             }
             // 欠费收据
-            &.qfsj{
+            &.qfsj {
               background-position-y: -549px;
             }
             // 报名续费
-            &.bmxf{
+            &.bmxf {
               background-position-y: -636px;
             }
             // 快速收款
-            &.kssk{
+            &.kssk {
               background-position-y: -467px;
             }
             // 工资结算
-            &.gzjs{
+            &.gzjs {
               background-position-y: -720px;
             }
             // 充值管理
-            &.czgl{
+            &.czgl {
               background-position-y: -467px;
             }
           }
         }
       }
     }
-    .right{
-      width: 26vw;
+    // 计划任务
+    .plan {
+      width: 50vw;
       background: #fff;
       border-radius: 5px;
       display: flex;
       flex-direction: column;
       padding: 10px 30px;
+      margin-bottom: 20px;
+      .el-tabs__item.is-active{
+        color: var(--theme);
+      }
+      .el-tabs__item:hover{
+        color: var(--theme);
+      }
+      .el-tabs__active-bar{
+        background-color: var(--deepTheme);
+      }
+    }
+    // 待办事项
+    .backlog {
+      width: 30vw;
+      background: #fff;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 30px;
+      margin-bottom: 20px;
+      .todoList {
+        width: 100%;
+        margin-top: 20px;
+        .todoItem {
+          padding: 10px 0;
+          text-align: left;
+          .icon {
+            display: inline-block;
+            padding: 1px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--theme);
+            font-size: 12px;
+            color: var(--fontColor);
+            margin-right: 10px;
+          }
+          span:last-child {
+            font-size: 14px;
+            color: #666;
+          }
+        }
+      }
     }
   }
 }
