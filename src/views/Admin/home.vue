@@ -74,10 +74,32 @@
         <!-- 计划任务 -->
         <div class="plan">
           <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="用户管理" name="first">今日待跟进</el-tab-pane>
-            <el-tab-pane label="配置管理" name="second">过去未完成</el-tab-pane>
-            <el-tab-pane label="角色管理" name="third">过去已完成</el-tab-pane>
-            <el-tab-pane label="定时任务补偿" name="fourth">以后待跟进</el-tab-pane>
+            <el-tab-pane label="今日待跟进" name="first">
+              <div class="record">
+                <span>未完成
+                  <strong>0</strong>
+                  条
+                </span>
+                <span>
+                  已完成
+                  <strong>0</strong>
+                  条
+                </span>
+              </div>
+              <el-table :data="tableData" style="width: 100%">
+                <el-table-column prop="date" label="日期" width="180"></el-table-column>
+                <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+                <el-table-column prop="address" label="地址"></el-table-column>
+                <el-table-column label="操作" width="100">
+                  <template slot-scope="scope">
+                    <el-button @click="handleClick(scope.row)" type="text" size="small">跟进</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-tab-pane>
+            <el-tab-pane label="过去未完成" name="second">过去未完成</el-tab-pane>
+            <el-tab-pane label="过去已完成" name="third">过去已完成</el-tab-pane>
+            <el-tab-pane label="以后待跟进" name="fourth">以后待跟进</el-tab-pane>
           </el-tabs>
         </div>
       </div>
@@ -103,13 +125,21 @@
 export default {
   data() {
     return {
-      activeName: "first"
+      activeName: "first",
+      tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+      }],
     };
   },
   name: "",
   methods: {
-    handleClick(tab,event){
-      console.log(tab,event)
+    handleClick(tab, event) {
+      console.log(tab, event);
     }
   },
   watch: {},
@@ -286,14 +316,27 @@ export default {
       flex-direction: column;
       padding: 10px 30px;
       margin-bottom: 20px;
-      .el-tabs__item.is-active{
+      .el-tabs__item.is-active {
         color: var(--theme);
       }
-      .el-tabs__item:hover{
+      .el-tabs__item:hover {
         color: var(--theme);
       }
-      .el-tabs__active-bar{
+      .el-tabs__active-bar {
         background-color: var(--deepTheme);
+      }
+      .record{
+        width: 100%;
+        border-radius: 5px;
+        color: #333;
+        background-color: var(--deepTheme);
+        padding: 5px 10px;
+        text-align: left;
+        font-size: 12px;
+        box-sizing: border-box;
+        span:first-child{
+          margin-right: 10px;
+        }
       }
     }
     // 待办事项
