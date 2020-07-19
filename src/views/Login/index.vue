@@ -10,9 +10,9 @@
         <input type="password" placeholder="密码">
       </section>
       <div class="able">
-        <div>
+        <label>
           <input type="radio">记住手机号
-        </div>
+        </label>
         <div>忘记密码?</div>
       </div>
       <div class="btn">
@@ -95,18 +95,20 @@ export default {
       justify-content: space-between;
       margin: 12px 0;
       font-size: 12px;
-      div:first-child{
+      label:first-child{
         display: flex;
         align-items: center;
+        cursor: pointer;
         input{
           margin-right: 5px;
         }
       }
       div:nth-child(2){
         color: var(--fontColor);
+        cursor: pointer;
         transition: all .3s;
         &:hover{
-          color: var(--theme);
+          color: var(--deepTheme);
         }
       }
     }

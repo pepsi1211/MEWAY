@@ -11,7 +11,7 @@
       <el-container>
         <el-aside width="200px">
           <el-menu
-            default-active="2"
+            default-active="1"
             class="el-menu-vertical-demo"
             background-color="#eeddd5"
             text-color="#AFAFB1"
@@ -19,7 +19,7 @@
           >
             <el-menu-item index="1">
               <i class="el-icon-s-home"></i>
-              <span>中心首页</span>
+              <router-link to="/admin/home" tag="span" slot="title">中心首页</router-link>
             </el-menu-item>
             <el-submenu index="2">
               <template slot="title">
@@ -27,12 +27,15 @@
                 <span slot="title">教务中心</span>
               </template>
               <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
+                <el-menu-item index="2-1">
+                  <router-link to="/admin/users" tag="span">学员管理</router-link>
+                </el-menu-item>
+                <el-menu-item index="2-2">班级管理</el-menu-item>
+                <el-menu-item index="2-3">老师管理</el-menu-item>
+                <el-menu-item index="2-4">课程/收费</el-menu-item>
+                <el-menu-item index="2-5">上课记录</el-menu-item>
+                <el-menu-item index="2-6">家校互动</el-menu-item>
+                <el-menu-item index="2-7">电子相册</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
             <el-menu-item index="3">
@@ -105,7 +108,7 @@ export default {
   background-color: var(--theme);
   color: #333;
   text-align: center;
-  height: 93vh;
+  height: 130vh;
   line-height: 200px;
 }
 

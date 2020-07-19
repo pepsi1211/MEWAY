@@ -76,7 +76,8 @@
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="今日待跟进" name="first">
               <div class="record">
-                <span>未完成
+                <span>
+                  未完成
                   <strong>0</strong>
                   条
                 </span>
@@ -102,6 +103,14 @@
             <el-tab-pane label="以后待跟进" name="fourth">以后待跟进</el-tab-pane>
           </el-tabs>
         </div>
+        <!-- 销售漏斗 -->
+        <div class="echarts-sale">
+          <div class="title">
+            <span>销售漏斗</span>
+            <i></i>
+          </div>
+          <div class="funnel" ref="funnel"></div>
+        </div>
       </div>
       <div class="right">
         <!-- 待办事项 -->
@@ -117,6 +126,14 @@
             </div>
           </div>
         </div>
+        <!-- 学员组成 -->
+        <div class="echarts-student">
+          <div class="title">
+            <span>学员组成</span>
+            <i></i>
+          </div>
+          <div class="pie" ref="pie"></div>
+        </div>
       </div>
     </section>
   </div>
@@ -126,27 +143,136 @@ export default {
   data() {
     return {
       activeName: "first",
-      tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
           zip: 200333
-      }],
+        }
+      ]
     };
   },
   name: "",
   methods: {
     handleClick(tab, event) {
       console.log(tab, event);
+    },
+    Pie() {
+      // 基于准备好的dom，初始化echarts实例
+      let chart = this.$echarts.init(this.$refs.pie);
+      // console.log(this.$refs.pie);
+      chart.setOption({
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          left: 10,
+          data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"]
+        },
+        series: [
+          {
+            name: "访问来源",
+            type: "pie",
+            radius: ["45%", "60%"],
+            avoidLabelOverlap: false,
+            label: {
+              show: false,
+              position: "center"
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: "16",
+                fontWeight: "bold"
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: [
+              { value: 335, name: "直接访问" },
+              { value: 310, name: "邮件营销" },
+              { value: 234, name: "联盟广告" },
+              { value: 135, name: "视频广告" },
+              { value: 1548, name: "搜索引擎" }
+            ]
+          }
+        ]
+      });
+    },
+    funnel() {
+      let chart = this.$echarts.init(this.$refs.funnel);
+      chart.setOption({
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c}%"
+        },
+        legend: {
+          data: ["展现", "点击", "访问", "咨询", "订单"]
+        },
+
+        series: [
+          {
+            name: "漏斗图",
+            type: "funnel",
+            left: "25%",
+            top: 60,
+            //x2: 80,
+            bottom: 60,
+            width: "50%",
+            // height: {totalHeight} - y - y2,
+            min: 0,
+            max: 100,
+            minSize: "0%",
+            maxSize: "100%",
+            sort: "descending",
+            gap: 2,
+            label: {
+              show: true,
+              position: "inside"
+            },
+            labelLine: {
+              length: 10,
+              lineStyle: {
+                width: 1,
+                type: "solid"
+              }
+            },
+            itemStyle: {
+              borderColor: "#fff",
+              borderWidth: 1
+            },
+            emphasis: {
+              label: {
+                fontSize: 20
+              }
+            },
+            data: [
+              { value: 60, name: "访问" },
+              { value: 40, name: "咨询" },
+              { value: 20, name: "订单" },
+              { value: 80, name: "点击" },
+              { value: 100, name: "展现" }
+            ]
+          }
+        ]
+      });
     }
+  },
+  mounted() {
+    this.Pie();
+    this.funnel();
   },
   watch: {},
   computed: {}
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
   width: 100%;
   display: flex;
@@ -317,15 +443,15 @@ export default {
       padding: 10px 30px;
       margin-bottom: 20px;
       .el-tabs__item.is-active {
-        color: var(--theme);
+        color: var(--deepTheme);
       }
       .el-tabs__item:hover {
-        color: var(--theme);
+        color: var(--deepTheme);
       }
       .el-tabs__active-bar {
         background-color: var(--deepTheme);
       }
-      .record{
+      .record {
         width: 100%;
         border-radius: 5px;
         color: #333;
@@ -334,14 +460,29 @@ export default {
         text-align: left;
         font-size: 12px;
         box-sizing: border-box;
-        span:first-child{
+        span:first-child {
           margin-right: 10px;
         }
       }
     }
+    // 销售漏斗
+    .echarts-sale {
+      width: 50vw;
+      background: #fff;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 30px;
+      margin-bottom: 20px;
+      .funnel {
+        width: 100%;
+        height: 330px;
+        margin-top: 20px;
+      }
+    }
     // 待办事项
     .backlog {
-      width: 30vw;
+      width: 29vw;
       background: #fff;
       border-radius: 5px;
       display: flex;
@@ -368,6 +509,20 @@ export default {
             color: #666;
           }
         }
+      }
+    }
+    .echarts-student {
+      width: 29vw;
+      background: #fff;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 30px;
+      margin-bottom: 20px;
+      .pie {
+        width: 100%;
+        height: 300px;
+        margin-top: 20px;
       }
     }
   }

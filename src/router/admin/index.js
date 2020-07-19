@@ -7,6 +7,10 @@ export default {
       component: ()=>import('@/views/Admin/home.vue')
     },
     {
+      path: "users",
+      component: ()=>import('@/views/Admin/users.vue')
+    },
+    {
       path: "/admin",
       redirect: 'home'
     }
