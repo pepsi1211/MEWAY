@@ -9,6 +9,7 @@
         <el-table
           stripe
           border
+          v-loading="loading"
           ref="multipleTable"
           :data="tableData"
           tooltip-effect="dark"
