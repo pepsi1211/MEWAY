@@ -9,57 +9,59 @@
         </div>
       </el-header>
       <el-container>
-        <el-aside width="200px">
-          <el-menu
-            default-active="1"
-            class="el-menu-vertical-demo"
-            background-color="#eeddd5"
-            text-color="#AFAFB1"
-            active-text-color="#333"
-          >
-            <el-menu-item index="1">
-              <i class="el-icon-s-home"></i>
-              <router-link to="/admin/home" tag="span" slot="title">中心首页</router-link>
-            </el-menu-item>
-            <el-submenu index="2">
-              <template slot="title">
-                <i class="el-icon-s-cooperation"></i>
-                <span slot="title">教务中心</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="2-1">
-                  <router-link to="/admin/users" tag="span">学员管理</router-link>
-                </el-menu-item>
-                <el-menu-item index="2-2">班级管理</el-menu-item>
-                <el-menu-item index="2-3">老师管理</el-menu-item>
-                <el-menu-item index="2-4">课程/收费</el-menu-item>
-                <el-menu-item index="2-5">上课记录</el-menu-item>
-                <el-menu-item index="2-6">家校互动</el-menu-item>
-                <el-menu-item index="2-7">电子相册</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-menu-item index="3">
-              <i class="el-icon-s-claim"></i>
-              <span slot="title">销售中心</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-coin"></i>
-              <span slot="title">财务中心</span>
-            </el-menu-item>
-            <el-menu-item index="5">
-              <i class="el-icon-data-line"></i>
-              <span slot="title">数据中心</span>
-            </el-menu-item>
-            <el-menu-item index="6">
-              <i class="el-icon-setting"></i>
-              <span slot="title">机构设置</span>
-            </el-menu-item>
-            <el-menu-item index="7">
-              <i class="el-icon-attract"></i>
-              <span slot="title">增值服务</span>
-            </el-menu-item>
-          </el-menu>
-        </el-aside>
+        <div class="aside">
+          <el-aside width="200px">
+            <el-menu
+              default-active="1"
+              class="el-menu-vertical-demo"
+              background-color="#eeddd5"
+              text-color="#AFAFB1"
+              active-text-color="#333"
+            >
+              <el-menu-item index="1">
+                <i class="el-icon-s-home"></i>
+                <router-link to="/admin/home" tag="span" slot="title">中心首页</router-link>
+              </el-menu-item>
+              <el-submenu index="2">
+                <template slot="title">
+                  <i class="el-icon-s-cooperation"></i>
+                  <span slot="title">教务中心</span>
+                </template>
+                <el-menu-item-group>
+                  <el-menu-item index="2-1">
+                    <router-link to="/admin/users" tag="span">学员管理</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="2-2">班级管理</el-menu-item>
+                  <el-menu-item index="2-3">老师管理</el-menu-item>
+                  <el-menu-item index="2-4">课程/收费</el-menu-item>
+                  <el-menu-item index="2-5">上课记录</el-menu-item>
+                  <el-menu-item index="2-6">家校互动</el-menu-item>
+                  <el-menu-item index="2-7">电子相册</el-menu-item>
+                </el-menu-item-group>
+              </el-submenu>
+              <el-menu-item index="3">
+                <i class="el-icon-s-claim"></i>
+                <span slot="title">销售中心</span>
+              </el-menu-item>
+              <el-menu-item index="4">
+                <i class="el-icon-coin"></i>
+                <span slot="title">财务中心</span>
+              </el-menu-item>
+              <el-menu-item index="5">
+                <i class="el-icon-data-line"></i>
+                <span slot="title">数据中心</span>
+              </el-menu-item>
+              <el-menu-item index="6">
+                <i class="el-icon-setting"></i>
+                <span slot="title">机构设置</span>
+              </el-menu-item>
+              <el-menu-item index="7">
+                <i class="el-icon-attract"></i>
+                <span slot="title">增值服务</span>
+              </el-menu-item>
+            </el-menu>
+          </el-aside>
+        </div>
         <el-main>
           <router-view></router-view>
         </el-main>
@@ -89,27 +91,29 @@ export default {
   align-items: center;
   padding: 0 60px;
   .logo {
-  width: 75px;
+    width: 75px;
   }
-  .user{
+  .user {
     font-size: 20px;
     display: flex;
     align-items: center;
-    .user-name{
+    .user-name {
       font-size: 15px;
       color: var(--theme);
       margin-left: 10px;
     }
   }
 }
-
-
+.aside{
+  height: 100%;
+  background-color: var(--theme);
+}
 .el-aside {
   background-color: var(--theme);
   color: #333;
   text-align: center;
-  height: 130vh;
   line-height: 200px;
+  height: 130vh;
 }
 
 .el-main {

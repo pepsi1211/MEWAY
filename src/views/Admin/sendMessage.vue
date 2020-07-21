@@ -5,7 +5,7 @@
       返回
     </header>
     <section class="section">
-      <div>
+      <div class="form">
         <el-form>
           <el-form-item label="接收人" prop="resource">
             <el-radio-group>
@@ -15,21 +15,21 @@
             </el-radio-group>
             <button>选择学员</button>
           </el-form-item>
-          <div>
+          <div class="input-title">
             <span>标题</span>
             <input type="text" maxlength="40" class="input" />
           </div>
-          <el-card style="height: 610px;">
+          <el-card style="height: 370px;">
             <quill-editor
               v-model="content"
               ref="myQuillEditor"
-              style="height: 500px"
+              style="height: 300px"
               :options="editorOption"
             ></quill-editor>
           </el-card>
         </el-form>
       </div>
-      <div></div>
+      <div class="btn-group"></div>
     </section>
   </main>
 </template>
@@ -63,6 +63,16 @@ export default {
     color: var(--fontColor);
     text-align: left;
     margin-bottom: 20px;
+  }
+  .section{
+    width: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
   }
 }
 </style>
