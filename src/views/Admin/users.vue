@@ -1,5 +1,5 @@
 <template>
-  <main class="container">
+  <main class="container" ref="main">
     <header class="header">学员管理</header>
     <section class="section">
       <div class="search">
@@ -109,7 +109,16 @@ export default {
     }
   },
   watch: {},
-  computed: {}
+  computed: {},
+  mounted(){
+    this.$nextTick(() => {
+      // 页面渲染完成后的回调
+      var main = this.$refs.main.offsetHeight;
+      main = main + 50 + 'px';
+      console.log(main);
+      localStorage.setItem('asideHeight',main);
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>

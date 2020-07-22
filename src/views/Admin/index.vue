@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-header height="7vh">
+      <el-header height="65px">
         <img src="../../../public/img/logo.png" class="logo" />
         <div class="user">
           <i class="el-icon-s-custom"></i>
@@ -9,7 +9,7 @@
         </div>
       </el-header>
       <el-container>
-        <div class="aside">
+        <div class="aside" :style="{height: scrollerHeight}">
           <el-aside width="200px">
             <el-menu
               default-active="1"
@@ -72,10 +72,16 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      scrollerHeight: ""
+    };
   },
   name: "admin",
   methods: {},
+  mounted() {
+    var scrollerHeight = localStorage.getItem('asideHeight');
+    this.scrollerHeight = scrollerHeight;
+  },
   watch: {},
   computed: {}
 };
@@ -104,7 +110,7 @@ export default {
     }
   }
 }
-.aside{
+.aside {
   height: 100%;
   background-color: var(--theme);
 }
@@ -113,7 +119,6 @@ export default {
   color: #333;
   text-align: center;
   line-height: 200px;
-  height: 130vh;
 }
 
 .el-main {

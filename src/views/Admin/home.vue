@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" ref="main">
     <header class="header">
       <div class="title">
         <span>机构数据</span>
@@ -152,7 +152,8 @@ export default {
           address: "上海市普陀区金沙江路 1518 弄",
           zip: 200333
         }
-      ]
+      ],
+      loading: true
     };
   },
   name: "",
@@ -267,6 +268,14 @@ export default {
   mounted() {
     this.Pie();
     this.funnel();
+    this.$nextTick(() => {
+      // 页面渲染完成后的回调
+      var main = this.$refs.main.offsetHeight;
+      main = main + 50 + 'px';
+      console.log(main);
+      localStorage.setItem('asideHeight',main);
+      // this.scrollerHeight = main + 'px';
+    });
   },
   watch: {},
   computed: {}
