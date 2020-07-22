@@ -9,7 +9,7 @@
         </div>
       </el-header>
       <el-container>
-        <div class="aside" :style="{height: scrollerHeight}">
+        <div class="aside" :style="{height: $store.state.admin.asideHeight}">
           <el-aside width="200px">
             <el-menu
               default-active="1"

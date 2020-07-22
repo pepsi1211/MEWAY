@@ -113,10 +113,17 @@ export default {
   mounted(){
     this.$nextTick(() => {
       // 页面渲染完成后的回调
-      var main = this.$refs.main.offsetHeight;
-      main = main + 50 + 'px';
-      console.log(main);
-      localStorage.setItem('asideHeight',main);
+      var asideHeight = this.$refs.main.offsetHeight;
+      var currentHeight = window.innerHeight;
+      console.log(asideHeight,currentHeight);
+      if(asideHeight < currentHeight){
+        asideHeight = currentHeight - 50 + 'px'
+      }else{
+        asideHeight = asideHeight + 220 + 'px';
+        console.log(asideHeight)
+      }
+      localStorage.setItem('asideHeight',asideHeight);
+      this.$store.commit('admin/ASIDE_HEIGHT',{ asideHeight })
     });
   }
 };

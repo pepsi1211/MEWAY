@@ -270,11 +270,17 @@ export default {
     this.funnel();
     this.$nextTick(() => {
       // 页面渲染完成后的回调
-      var main = this.$refs.main.offsetHeight;
-      main = main + 50 + 'px';
-      console.log(main);
-      localStorage.setItem('asideHeight',main);
-      // this.scrollerHeight = main + 'px';
+      var asideHeight = this.$refs.main.offsetHeight;
+      var currentHeight = window.innerHeight;
+      console.log(asideHeight,currentHeight);
+      if(asideHeight < currentHeight){
+        asideHeight = currentHeight - 50 + 'px'
+      }else{
+        asideHeight = asideHeight + 100 + 'px';
+        console.log(asideHeight)
+      }
+      localStorage.setItem('asideHeight',asideHeight);
+      this.$store.commit('admin/ASIDE_HEIGHT',{ asideHeight })
     });
   },
   watch: {},
