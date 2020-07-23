@@ -34,7 +34,7 @@
         </el-card>
       </div>
       <div class="btn-group">
-        <div class="btn-send">发消息</div>
+        <div class="btn-send" >发消息</div>
       </div>
     </section>
   </main>
@@ -46,16 +46,20 @@ import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
 export default {
+  name: 'SendMessage',
   data() {
     return {
       content: null,
       editorOption: {},
+      dialogVisible: false,
     };
   },
   components: {
     quillEditor,
   },
-  methods: {},
+  methods: {
+    
+  },
   watch: {},
   computed: {},
 };
@@ -63,6 +67,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 100%;
+  height: 100%;
   user-select: none;
   .header {
     font-size: 16px;
@@ -151,15 +156,15 @@ export default {
     }
     .btn-group {
       padding: 20px 100px;
-      .btn-send{
+      .btn-send {
         font-size: 14px;
         padding: 5px 20px;
         background-color: var(--deepTheme);
         color: #fff;
         border-radius: 5px;
-        transition: all .3s linear;
+        transition: all 0.3s linear;
       }
-      .btn-send:hover{
+      .btn-send:hover {
         background-color: var(--theme);
         cursor: pointer;
       }

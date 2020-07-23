@@ -15,6 +15,10 @@ export default {
       component: ()=>import('@/views/Admin/sendMessage.vue')
     },
     {
+      path: "class",
+      component: ()=>import('@/views/Admin/class.vue')
+    },
+    {
       path: "/admin",
       redirect: 'home'
     }

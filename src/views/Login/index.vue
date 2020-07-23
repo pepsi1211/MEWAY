@@ -24,6 +24,7 @@
 <script>
 import Header from '@/components/Header'
 export default {
+  name: 'Login',
   data() {
     return {};
   },

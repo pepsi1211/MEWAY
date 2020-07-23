@@ -1,9 +1,9 @@
 <template>
-  <main class="container" ref="main">
+  <main class="container">
     <header class="header">学员管理</header>
     <section class="section">
       <div class="search">
-        <input v-model="input" class="input" placeholder="按姓名查找"/>
+        <input v-model="input" class="input" @click="dialogVisible=!0" placeholder="按姓名查找" />
       </div>
       <div class="table">
         <el-table
@@ -41,60 +41,69 @@
         :page-size="pageSize"
         :current-page.sync="currentPage"
       ></el-pagination>
+      <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+        <span>这是一段信息</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
     </section>
   </main>
 </template>
 <script>
 export default {
+  name: 'Users',
   data() {
     return {
       tableData: [
         {
           date: "2016-05-03",
           name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
+          address: "上海市普陀区金沙江路 1518 弄",
         },
         {
           date: "2016-05-02",
           name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
+          address: "上海市普陀区金沙江路 1518 弄",
         },
         {
           date: "2016-05-04",
           name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
+          address: "上海市普陀区金沙江路 1518 弄",
         },
         {
           date: "2016-05-01",
           name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
+          address: "上海市普陀区金沙江路 1518 弄",
         },
         {
           date: "2016-05-08",
           name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
+          address: "上海市普陀区金沙江路 1518 弄",
         },
         {
           date: "2016-05-06",
           name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
+          address: "上海市普陀区金沙江路 1518 弄",
         },
         {
           date: "2016-05-07",
           name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        }
+          address: "上海市普陀区金沙江路 1518 弄",
+        },
       ],
       multipleSelection: [],
       currentPage: 1,
       pageSize: 4,
-      input: ''
+      input: "",
+      dialogVisible: false,
     };
   },
   methods: {
     toggleSelection(rows) {
       if (rows) {
-        rows.forEach(row => {
+        rows.forEach((row) => {
           this.$refs.multipleTable.toggleRowSelection(row);
         });
       } else {
@@ -106,26 +115,18 @@ export default {
     },
     deleteRow(index, rows) {
       rows.splice(index, 1);
-    }
+    },
+    handleClose(done) {
+      this.$confirm("确认关闭？")
+        .then((_) => {
+          done();
+        })
+        .catch((_) => {});
+    },
   },
   watch: {},
   computed: {},
-  mounted(){
-    this.$nextTick(() => {
-      // 页面渲染完成后的回调
-      var asideHeight = this.$refs.main.offsetHeight;
-      var currentHeight = window.innerHeight;
-      console.log(asideHeight,currentHeight);
-      if(asideHeight < currentHeight){
-        asideHeight = currentHeight - 50 + 'px'
-      }else{
-        asideHeight = asideHeight + 220 + 'px';
-        console.log(asideHeight)
-      }
-      localStorage.setItem('asideHeight',asideHeight);
-      this.$store.commit('admin/ASIDE_HEIGHT',{ asideHeight })
-    });
-  }
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -148,24 +149,6 @@ export default {
       padding: 10px 20px;
       box-sizing: border-box;
       text-align: left;
-      .input{
-        width: 25%;
-        height: 35px;
-        padding: 0 10px;
-        box-sizing: border-box;
-        color: var(--fontColor);
-        border: 1px solid var(--theme);
-        border-radius: 5px;
-        display: inline-block;
-        font-size: 13px;
-        outline: none;
-        transition: border-color .6s cubic-bezier(.645,.045,.355,1);
-        transition: box-shadow .4s cubic-bezier(.645,.045,.355,1);
-        &:focus{
-          border: 1px solid var(--deepTheme);
-          box-shadow: 3px 5px 5px rgba($color: #000000, $alpha: .09);
-        }
-      }
     }
     .table {
       width: 100%;

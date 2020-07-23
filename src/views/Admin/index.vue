@@ -9,8 +9,8 @@
         </div>
       </el-header>
       <el-container>
-        <div class="aside" :style="{height: $store.state.admin.asideHeight}">
-          <el-aside width="200px">
+        <div class="aside">
+          <el-aside style="width:200px">
             <el-menu
               default-active="1"
               class="el-menu-vertical-demo"
@@ -31,7 +31,9 @@
                   <el-menu-item index="2-1">
                     <router-link to="/admin/users" tag="span">学员管理</router-link>
                   </el-menu-item>
-                  <el-menu-item index="2-2">班级管理</el-menu-item>
+                  <el-menu-item index="2-2">
+                    <router-link to="/admin/class" tag="span">班级管理</router-link>
+                  </el-menu-item>
                   <el-menu-item index="2-3">老师管理</el-menu-item>
                   <el-menu-item index="2-4">课程/收费</el-menu-item>
                   <el-menu-item index="2-5">上课记录</el-menu-item>
@@ -62,7 +64,7 @@
             </el-menu>
           </el-aside>
         </div>
-        <el-main>
+        <el-main :style="{width: $store.state.admin.mainWdth}">
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -71,6 +73,7 @@
 </template>
 <script>
 export default {
+  name: 'Index',
   data() {
     return {
       scrollerHeight: "",
@@ -78,13 +81,25 @@ export default {
   },
   name: "admin",
   methods: {},
-  mounted() {},
+  mounted() {
+    this.$nextTick(() => {
+      // 页面渲染完成后的回调
+      var currentWidth = window.innerWidth - 200 + 'px';
+      console.log(currentWidth);
+      localStorage.setItem("mainWdth", currentWidth);
+      this.$store.commit("admin/MAIN_WIDTH", { currentWidth });
+    });
+  },
   watch: {},
   computed: {},
 };
 </script>
 <style lang="scss">
 .el-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: var(--fontColor);
   color: #333;
   text-align: center;
@@ -93,6 +108,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 60px;
+  z-index: 9;
   .logo {
     width: 75px;
   }
@@ -107,11 +123,12 @@ export default {
     }
   }
 }
-.aside {
-  height: 100%;
-  background-color: var(--theme);
-}
+
 .el-aside {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  height: 100%;
   background-color: var(--theme);
   color: #333;
   text-align: center;
@@ -119,9 +136,14 @@ export default {
 }
 
 .el-main {
+  position: absolute;
+  top: 65px;
+  left: 200px;
   background-color: #e9eef3;
   color: #333;
+  height: 93vh;
   text-align: center;
+  box-sizing: border-box;
 }
 
 body > .el-container {

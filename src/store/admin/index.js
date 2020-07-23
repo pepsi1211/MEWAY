@@ -1,5 +1,5 @@
 const state = {
-  asideHeight: window.localStorage.getItem('asideHeight') || '',
+  mainWdth: window.localStorage.getItem('mainWdth') || '',
 }
 
 const actions = {
@@ -7,8 +7,8 @@ const actions = {
 }
 
 const mutations = {
-  ASIDE_HEIGHT(state, payload){
-    state.asideHeight = payload.asideHeight
+  MAIN_WIDTH(state, payload){
+    state.mainWdth = payload.currentWidth
   }
 }
 
