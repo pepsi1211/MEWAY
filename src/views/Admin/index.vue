@@ -73,17 +73,14 @@
 export default {
   data() {
     return {
-      scrollerHeight: ""
+      scrollerHeight: "",
     };
   },
   name: "admin",
   methods: {},
-  mounted() {
-    var scrollerHeight = localStorage.getItem('asideHeight');
-    this.scrollerHeight = scrollerHeight;
-  },
+  mounted() {},
   watch: {},
-  computed: {}
+  computed: {},
 };
 </script>
 <style lang="scss">
