@@ -6,8 +6,8 @@
     <div class="frame">
       <div class="title">账号密码</div>
       <section class="section">
-        <input type="text" placeholder="手机号">
-        <input type="password" placeholder="密码">
+        <input type="text" v-model="phone" placeholder="手机号">
+        <input type="password" v-model="password" placeholder="密码">
       </section>
       <div class="able">
         <label>
@@ -15,7 +15,7 @@
         </label>
         <div>忘记密码?</div>
       </div>
-      <div class="btn">
+      <div class="btn" @click="login">
         登录
       </div>
     </div>
@@ -26,15 +26,27 @@ import Header from '@/components/Header'
 export default {
   name: 'Login',
   data() {
-    return {};
+    return {
+      phone: '',
+      password: ''
+    };
   },
   name: "",
-  methods: {},
+  methods: {
+    login(){
+      this.axios.post('/api/users/login',this.$qs.stringify({phone:this.phone,password:this.password})).then(res=>{
+        console.log(res);
+      })
+    },
+  },
   components:{
     Header
   },
   watch: {},
-  computed: {}
+  computed: {},
+  mounted(){
+
+  }
 };
 </script>
 <style lang="scss">

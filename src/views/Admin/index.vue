@@ -90,6 +90,7 @@ export default {
       this.$store.commit("admin/MAIN_WIDTH", { currentWidth });
     });
   },
+  created(){},
   watch: {},
   computed: {},
 };
