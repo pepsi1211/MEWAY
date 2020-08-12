@@ -2,21 +2,16 @@
   <main class="main">
     <Header></Header>
     <div class="cloudfloating"></div>
-    <!-- 登录框 -->
+    <!-- 注册框 -->
     <div class="frame">
-      <div class="title">账号密码</div>
+      <div class="title">注册</div>
       <section class="section">
         <input type="text" v-model="phone" placeholder="手机号">
         <input type="password" v-model="password" placeholder="密码">
+        <input type="text" v-model="verify" placeholder="识别码">
       </section>
-      <div class="able">
-        <label>
-          <input type="radio">记住手机号
-        </label>
-        <div>忘记密码?</div>
-      </div>
       <div class="btn" @click="login">
-        登录
+        注册
       </div>
     </div>
   </main>
@@ -28,13 +23,19 @@ export default {
   data() {
     return {
       phone: '',
-      password: ''
+      password: '',
+      verify: ''
     };
   },
   name: "",
   methods: {
-    login(){
-      this.axios.post('/api/users/login',this.$qs.stringify({phone:this.phone,password:this.password})).then(res=>{
+    register(){
+      var params = {
+        phone: this.phone,
+        password: this.password,
+        verify: this.verify
+      }
+      this.axios.post( '/api/users/register', this.$qs.stringify(params) ).then(res=>{
         console.log(res);
       })
     },
