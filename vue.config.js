@@ -6,7 +6,7 @@ module.exports = {
     proxy: {
       // 配置跨域
       "/api": {
-        target: 'http://localhost:3000',
+        target: 'http://49.233.128.141:3000',
         changeOrigin: true
       }
     }
