@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import adminRouter from './admin'
 import loginRouter from './login'
+import registerRouter from './register'
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,7 @@ Vue.use(VueRouter)
     routes: [
       adminRouter,
       loginRouter,
+      registerRouter,
       {
         path: "/*",
         redirect: "/admin"

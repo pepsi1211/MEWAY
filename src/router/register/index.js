@@ -1,4 +1,4 @@
 export default {
-  path:'/register',
+  path:'/reg',
   component: () => import('@/views/Register')
 }
