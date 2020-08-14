@@ -13,7 +13,7 @@ Vue.use(VueRouter)
       loginRouter,
       {
         path: "/*",
-        redirect: "/login"
+        redirect: "/admin"
       }
     ]
   })

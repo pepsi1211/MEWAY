@@ -39,11 +39,14 @@ export default {
         )
         .then((res) => {
           var result = res.data;
+          var { token } = res.data.data;
           if (result.status == 200) {
             this.$message({
               message: `${result.msg}`,
               type: "success",
             });
+            localStorage.setItem("token",token);
+            this.$store.commit('login/TOKEN',{token});
             const loading = this.$loading({
               lock: true,
               text: "Loading",
@@ -74,7 +77,7 @@ export default {
   mounted() {},
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .main {
   display: block;
   min-width: 1024px;

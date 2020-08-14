@@ -283,6 +283,7 @@ export default {
   box-sizing: border-box;
   .header {
     width: 100%;
+    height: auto;
     background: #fff;
     padding: 10px 30px;
     display: flex;

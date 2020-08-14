@@ -72,6 +72,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: 'Index',
   data() {
@@ -93,9 +94,18 @@ export default {
   created(){},
   watch: {},
   computed: {},
+  beforeRouteEnter(to, from, next) {
+    axios.post("api/users/getUser").then( res=>{
+      if(res.data.status == 200){
+        next();
+      }else{
+        next("/login")
+      }
+    })
+  }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .el-header {
   position: fixed;
   top: 0;
