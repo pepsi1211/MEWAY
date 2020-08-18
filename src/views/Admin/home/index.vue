@@ -372,7 +372,7 @@ export default {
             display: inline-block;
             width: 42px;
             height: 42px;
-            background: url(../../../public/img/gift.png) no-repeat 50%;
+            background: url(../../../../public/img/gift.png) no-repeat 50%;
             background-size: 100%;
             background-position-x: 0;
             margin-right: 20px;
