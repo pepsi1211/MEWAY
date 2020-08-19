@@ -99,7 +99,10 @@ export default {
       rows.splice(index, 1);
     },
     goDetail(scope){
-      console.log(scope)
+      // console.log(scope);
+      var id = scope.row._id;
+      // this.$admin('student-detail',id);
+      this.$router.push({path:'student-detail',query:{id}})
     },
     handleClose(done) {
       this.$confirm("确认关闭？")

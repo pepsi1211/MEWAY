@@ -9,6 +9,7 @@ import axios from 'axios';
 import echarts from 'echarts';
 import 'echarts/lib/component/tooltip';
 import Qs from  'qs';
+// import './tool/tool.js';
 
 
 Vue.prototype.axios = axios;
@@ -19,8 +20,6 @@ Vue.use(ElementUI);
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.common['Authorization'] = store.getters['login/token'];
-// console.log(store.getters['login/token']);
-
 
 new Vue({
   router,
