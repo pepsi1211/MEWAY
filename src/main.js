@@ -9,12 +9,14 @@ import axios from 'axios';
 import echarts from 'echarts';
 import 'echarts/lib/component/tooltip';
 import Qs from  'qs';
-// import './tool/tool.js';
+import { GoToAdmin, GoToBack } from './tool/tool.js';
 
 
 Vue.prototype.axios = axios;
 Vue.prototype.$qs = Qs;
 Vue.prototype.$echarts = echarts;
+Vue.prototype.$admin = GoToAdmin;
+Vue.prototype.$go = GoToBack;
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 

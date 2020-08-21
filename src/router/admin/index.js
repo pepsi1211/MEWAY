@@ -23,6 +23,10 @@ export default {
       component: ()=>import('@/views/Admin/class')
     },
     {
+      path: "teacher",
+      component: ()=>import('@/views/Admin/teacher')
+    },
+    {
       path: "/admin",
       redirect: 'home'
     }

@@ -1,8 +1,7 @@
 <template>
   <main class="container">
     <header class="header">
-      <i class="el-icon-arrow-left"></i>
-      返回
+      <i class="el-icon-arrow-left" @click="$router.go(-1)">返回</i>
     </header>
     <section class="section">
       <div class="student-base-info">
@@ -66,6 +65,7 @@ export default {
     handleClick(tab, event) {
       console.log(tab, event);
     },
+    // 获取单个学生信息
     getStudentDetail() {
       var { id } = this.$route.query;
       this.axios.post("/api/students/singleStudent", { id }).then((res) => {
@@ -98,6 +98,9 @@ export default {
     color: var(--fontColor);
     text-align: left;
     margin-bottom: 20px;
+    i{
+      cursor: pointer;
+    }
   }
   .section {
     width: 100%;
